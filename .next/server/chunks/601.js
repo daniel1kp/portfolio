@@ -26087,7 +26087,446 @@ function validateURL(url) {
 
 /***/ }),
 
-/***/ 7365:
+/***/ 2962:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/*!
+ * pretty <https://github.com/jonschlinkert/pretty>
+ *
+ * Copyright (c) 2013-2015, 2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */ 
+var beautify = __webpack_require__(1313);
+var condense = __webpack_require__(6299);
+var extend = __webpack_require__(2778);
+var defaults = {
+    unformatted: [
+        "code",
+        "pre",
+        "em",
+        "strong",
+        "span"
+    ],
+    indent_inner_html: true,
+    indent_char: " ",
+    indent_size: 2,
+    sep: "\n"
+};
+module.exports = function pretty(str, options) {
+    var opts = extend({}, defaults, options);
+    str = beautify.html(str, opts);
+    if (opts.ocd === true) {
+        if (opts.newlines) opts.sep = opts.newlines;
+        return ocd(str, opts);
+    }
+    return str;
+};
+function ocd(str, options) {
+    // Normalize and condense all newlines
+    return condense(str, options)// Remove empty whitespace the top of a file.
+    .replace(/^\s+/g, "")// Remove extra whitespace from eof
+    .replace(/\s+$/g, "\n")// Add a space above each comment
+    .replace(/(\s*<!--)/g, "\n$1")// Bring closing comments up to the same line as closing tag.
+    .replace(/>(\s*)(?=<!--\s*\/)/g, "> ");
+}
+
+
+/***/ }),
+
+/***/ 8548:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.ApiKeys = void 0;
+class ApiKeys {
+    constructor(resend){
+        this.resend = resend;
+    }
+    create(payload, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const data = yield this.resend.post("/api-keys", payload, options);
+            return data;
+        });
+    }
+    list() {
+        return __awaiter(this, void 0, void 0, function*() {
+            const data = yield this.resend.get("/api-keys");
+            return data;
+        });
+    }
+    remove(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            yield this.resend.delete(`/api-keys/${id}`);
+        });
+    }
+}
+exports.ApiKeys = ApiKeys;
+
+
+/***/ }),
+
+/***/ 4534:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.Domains = void 0;
+class Domains {
+    constructor(resend){
+        this.resend = resend;
+    }
+    create(payload, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const data = yield this.resend.post("/domains", payload, options);
+            return data;
+        });
+    }
+    list() {
+        return __awaiter(this, void 0, void 0, function*() {
+            const data = yield this.resend.get("/domains");
+            return data;
+        });
+    }
+    get(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const data = yield this.resend.get(`/domains/${id}`);
+            return data;
+        });
+    }
+    remove(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            yield this.resend.delete(`/domains/${id}`);
+        });
+    }
+    verify(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            yield this.resend.post(`/domains/${id}/verify`);
+        });
+    }
+}
+exports.Domains = Domains;
+
+
+/***/ }),
+
+/***/ 7947:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.Emails = void 0;
+const render_1 = __webpack_require__(8353);
+class Emails {
+    constructor(resend){
+        this.resend = resend;
+    }
+    send(payload, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            return this.create(payload, options);
+        });
+    }
+    create(payload, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            if (payload.react) {
+                payload.html = (0, render_1.render)(payload.react);
+                delete payload.react;
+            }
+            const data = yield this.resend.post("/emails", payload, options);
+            return data;
+        });
+    }
+    get(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const data = yield this.resend.get(`/emails/${id}`);
+            return data;
+        });
+    }
+}
+exports.Emails = Emails;
+
+
+/***/ }),
+
+/***/ 4975:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var __webpack_unused_export__;
+
+__webpack_unused_export__ = ({
+    value: true
+});
+exports.R = void 0;
+var resend_1 = __webpack_require__(4330);
+Object.defineProperty(exports, "R", ({
+    enumerable: true,
+    get: function() {
+        return resend_1.Resend;
+    }
+}));
+
+
+/***/ }),
+
+/***/ 4330:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+var __createBinding = (void 0) && (void 0).__createBinding || (Object.create ? function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = {
+            enumerable: true,
+            get: function() {
+                return m[k];
+            }
+        };
+    }
+    Object.defineProperty(o, k2, desc);
+} : function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+var __setModuleDefault = (void 0) && (void 0).__setModuleDefault || (Object.create ? function(o, v) {
+    Object.defineProperty(o, "default", {
+        enumerable: true,
+        value: v
+    });
+} : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (void 0) && (void 0).__importStar || function(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) {
+        for(var k in mod)if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    }
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.Resend = void 0;
+const node_fetch_1 = __importStar(__webpack_require__(1429));
+const render_1 = __webpack_require__(8353);
+const package_json_1 = __webpack_require__(8927);
+const api_keys_1 = __webpack_require__(8548);
+const domains_1 = __webpack_require__(4534);
+const emails_1 = __webpack_require__(7947);
+const baseUrl = process.env.RESEND_BASE_URL || "https://api.resend.com";
+const userAgent = process.env.RESEND_USER_AGENT || `resend-node:${package_json_1.version}`;
+class Resend {
+    constructor(key){
+        this.key = key;
+        this.apiKeys = new api_keys_1.ApiKeys(this);
+        this.domains = new domains_1.Domains(this);
+        this.emails = new emails_1.Emails(this);
+        if (!key) {
+            this.key = "re_5y6S7Bke_EgFWENSPSj7LxTcGapVDorCB";
+            if (!this.key) {
+                throw new Error('Missing API key. Pass it to the constructor `new Resend("re_123")`');
+            }
+        }
+        this.headers = new node_fetch_1.Headers({
+            Authorization: `Bearer ${this.key}`,
+            "User-Agent": userAgent,
+            "Content-Type": "application/json"
+        });
+    }
+    fetchRequest(path, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const response = yield (0, node_fetch_1.default)(`${baseUrl}${path}`, options);
+            if (!response.ok) {
+                const error = yield response.json();
+                return error;
+            }
+            return yield response.json();
+        });
+    }
+    post(path, entity, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const requestOptions = Object.assign({
+                method: "POST",
+                headers: this.headers,
+                body: JSON.stringify(entity)
+            }, options);
+            return yield this.fetchRequest(path, requestOptions);
+        });
+    }
+    get(path, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const requestOptions = Object.assign({
+                method: "GET",
+                headers: this.headers
+            }, options);
+            return yield this.fetchRequest(path, requestOptions);
+        });
+    }
+    put(path, entity, options = {}) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const requestOptions = Object.assign({
+                method: "PUT",
+                headers: this.headers,
+                body: JSON.stringify(entity)
+            }, options);
+            return yield this.fetchRequest(path, requestOptions);
+        });
+    }
+    delete(path, query) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const requestOptions = {
+                method: "DELETE",
+                headers: this.headers,
+                body: JSON.stringify(query)
+            };
+            return yield this.fetchRequest(path, requestOptions);
+        });
+    }
+    sendEmail(data) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const path = "/email";
+            if (data.react) {
+                data.html = (0, render_1.render)(data.react);
+                delete data.react;
+            }
+            const response = yield this.post(path, {
+                from: data.from,
+                to: data.to,
+                bcc: data.bcc,
+                cc: data.cc,
+                reply_to: data.reply_to,
+                subject: data.subject,
+                text: data.text,
+                html: data.html,
+                attachments: data.attachments,
+                tags: data.tags
+            });
+            return response;
+        });
+    }
+}
+exports.Resend = Resend;
+
+
+/***/ }),
+
+/***/ 1429:
 /***/ ((module, exports, __webpack_require__) => {
 
 
@@ -27672,445 +28111,6 @@ exports.Headers = Headers;
 exports.Request = Request;
 exports.Response = Response;
 exports.FetchError = FetchError;
-
-
-/***/ }),
-
-/***/ 2962:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-/*!
- * pretty <https://github.com/jonschlinkert/pretty>
- *
- * Copyright (c) 2013-2015, 2017, Jon Schlinkert.
- * Released under the MIT License.
- */ 
-var beautify = __webpack_require__(1313);
-var condense = __webpack_require__(6299);
-var extend = __webpack_require__(2778);
-var defaults = {
-    unformatted: [
-        "code",
-        "pre",
-        "em",
-        "strong",
-        "span"
-    ],
-    indent_inner_html: true,
-    indent_char: " ",
-    indent_size: 2,
-    sep: "\n"
-};
-module.exports = function pretty(str, options) {
-    var opts = extend({}, defaults, options);
-    str = beautify.html(str, opts);
-    if (opts.ocd === true) {
-        if (opts.newlines) opts.sep = opts.newlines;
-        return ocd(str, opts);
-    }
-    return str;
-};
-function ocd(str, options) {
-    // Normalize and condense all newlines
-    return condense(str, options)// Remove empty whitespace the top of a file.
-    .replace(/^\s+/g, "")// Remove extra whitespace from eof
-    .replace(/\s+$/g, "\n")// Add a space above each comment
-    .replace(/(\s*<!--)/g, "\n$1")// Bring closing comments up to the same line as closing tag.
-    .replace(/>(\s*)(?=<!--\s*\/)/g, "> ");
-}
-
-
-/***/ }),
-
-/***/ 8548:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
-    function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-            resolve(value);
-        });
-    }
-    return new (P || (P = Promise))(function(resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function step(result) {
-            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.ApiKeys = void 0;
-class ApiKeys {
-    constructor(resend){
-        this.resend = resend;
-    }
-    create(payload, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const data = yield this.resend.post("/api-keys", payload, options);
-            return data;
-        });
-    }
-    list() {
-        return __awaiter(this, void 0, void 0, function*() {
-            const data = yield this.resend.get("/api-keys");
-            return data;
-        });
-    }
-    remove(id) {
-        return __awaiter(this, void 0, void 0, function*() {
-            yield this.resend.delete(`/api-keys/${id}`);
-        });
-    }
-}
-exports.ApiKeys = ApiKeys;
-
-
-/***/ }),
-
-/***/ 4534:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
-    function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-            resolve(value);
-        });
-    }
-    return new (P || (P = Promise))(function(resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function step(result) {
-            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.Domains = void 0;
-class Domains {
-    constructor(resend){
-        this.resend = resend;
-    }
-    create(payload, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const data = yield this.resend.post("/domains", payload, options);
-            return data;
-        });
-    }
-    list() {
-        return __awaiter(this, void 0, void 0, function*() {
-            const data = yield this.resend.get("/domains");
-            return data;
-        });
-    }
-    get(id) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const data = yield this.resend.get(`/domains/${id}`);
-            return data;
-        });
-    }
-    remove(id) {
-        return __awaiter(this, void 0, void 0, function*() {
-            yield this.resend.delete(`/domains/${id}`);
-        });
-    }
-    verify(id) {
-        return __awaiter(this, void 0, void 0, function*() {
-            yield this.resend.post(`/domains/${id}/verify`);
-        });
-    }
-}
-exports.Domains = Domains;
-
-
-/***/ }),
-
-/***/ 7947:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
-    function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-            resolve(value);
-        });
-    }
-    return new (P || (P = Promise))(function(resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function step(result) {
-            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.Emails = void 0;
-const render_1 = __webpack_require__(8353);
-class Emails {
-    constructor(resend){
-        this.resend = resend;
-    }
-    send(payload, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            return this.create(payload, options);
-        });
-    }
-    create(payload, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            if (payload.react) {
-                payload.html = (0, render_1.render)(payload.react);
-                delete payload.react;
-            }
-            const data = yield this.resend.post("/emails", payload, options);
-            return data;
-        });
-    }
-    get(id) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const data = yield this.resend.get(`/emails/${id}`);
-            return data;
-        });
-    }
-}
-exports.Emails = Emails;
-
-
-/***/ }),
-
-/***/ 4975:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({
-    value: true
-});
-exports.R = void 0;
-var resend_1 = __webpack_require__(4330);
-Object.defineProperty(exports, "R", ({
-    enumerable: true,
-    get: function() {
-        return resend_1.Resend;
-    }
-}));
-
-
-/***/ }),
-
-/***/ 4330:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-var __createBinding = (void 0) && (void 0).__createBinding || (Object.create ? function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-        desc = {
-            enumerable: true,
-            get: function() {
-                return m[k];
-            }
-        };
-    }
-    Object.defineProperty(o, k2, desc);
-} : function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-});
-var __setModuleDefault = (void 0) && (void 0).__setModuleDefault || (Object.create ? function(o, v) {
-    Object.defineProperty(o, "default", {
-        enumerable: true,
-        value: v
-    });
-} : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (void 0) && (void 0).__importStar || function(mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) {
-        for(var k in mod)if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    }
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (void 0) && (void 0).__awaiter || function(thisArg, _arguments, P, generator) {
-    function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-            resolve(value);
-        });
-    }
-    return new (P || (P = Promise))(function(resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function step(result) {
-            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.Resend = void 0;
-const node_fetch_1 = __importStar(__webpack_require__(7365));
-const render_1 = __webpack_require__(8353);
-const package_json_1 = __webpack_require__(8927);
-const api_keys_1 = __webpack_require__(8548);
-const domains_1 = __webpack_require__(4534);
-const emails_1 = __webpack_require__(7947);
-const baseUrl = process.env.RESEND_BASE_URL || "https://api.resend.com";
-const userAgent = process.env.RESEND_USER_AGENT || `resend-node:${package_json_1.version}`;
-class Resend {
-    constructor(key){
-        this.key = key;
-        this.apiKeys = new api_keys_1.ApiKeys(this);
-        this.domains = new domains_1.Domains(this);
-        this.emails = new emails_1.Emails(this);
-        if (!key) {
-            this.key = "re_5y6S7Bke_EgFWENSPSj7LxTcGapVDorCB";
-            if (!this.key) {
-                throw new Error('Missing API key. Pass it to the constructor `new Resend("re_123")`');
-            }
-        }
-        this.headers = new node_fetch_1.Headers({
-            Authorization: `Bearer ${this.key}`,
-            "User-Agent": userAgent,
-            "Content-Type": "application/json"
-        });
-    }
-    fetchRequest(path, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const response = yield (0, node_fetch_1.default)(`${baseUrl}${path}`, options);
-            if (!response.ok) {
-                const error = yield response.json();
-                return error;
-            }
-            return yield response.json();
-        });
-    }
-    post(path, entity, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const requestOptions = Object.assign({
-                method: "POST",
-                headers: this.headers,
-                body: JSON.stringify(entity)
-            }, options);
-            return yield this.fetchRequest(path, requestOptions);
-        });
-    }
-    get(path, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const requestOptions = Object.assign({
-                method: "GET",
-                headers: this.headers
-            }, options);
-            return yield this.fetchRequest(path, requestOptions);
-        });
-    }
-    put(path, entity, options = {}) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const requestOptions = Object.assign({
-                method: "PUT",
-                headers: this.headers,
-                body: JSON.stringify(entity)
-            }, options);
-            return yield this.fetchRequest(path, requestOptions);
-        });
-    }
-    delete(path, query) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const requestOptions = {
-                method: "DELETE",
-                headers: this.headers,
-                body: JSON.stringify(query)
-            };
-            return yield this.fetchRequest(path, requestOptions);
-        });
-    }
-    sendEmail(data) {
-        return __awaiter(this, void 0, void 0, function*() {
-            const path = "/email";
-            if (data.react) {
-                data.html = (0, render_1.render)(data.react);
-                delete data.react;
-            }
-            const response = yield this.post(path, {
-                from: data.from,
-                to: data.to,
-                bcc: data.bcc,
-                cc: data.cc,
-                reply_to: data.reply_to,
-                subject: data.subject,
-                text: data.text,
-                html: data.html,
-                attachments: data.attachments,
-                tags: data.tags
-            });
-            return response;
-        });
-    }
-}
-exports.Resend = Resend;
 
 
 /***/ }),

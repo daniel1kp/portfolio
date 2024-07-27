@@ -19,7 +19,7 @@ module.exports = require("os");
 
 /***/ }),
 
-/***/ 2407:
+/***/ 9594:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -111,7 +111,7 @@ const originalPathname = "/favicon.ico/route";
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [587,501,514], () => (__webpack_exec__(2407)));
+var __webpack_exports__ = __webpack_require__.X(0, [587,501,514], () => (__webpack_exec__(9594)));
 module.exports = __webpack_exports__;
 
 })();
