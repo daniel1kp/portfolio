@@ -28,3 +28,13 @@ The following dependencies are required for this project:
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute the code as per the terms of the license.
 
+## Deployment
+
+The portfolio website can be accessed [here](https://daniel1kp.netlify.app/)
+
+## Suggestions
+
+I'm open to suggestions to improve my portfolio website, let me know your thoughts!
+
+Connect with me through my [Linkedin](https://www.linkedin.com/in/daniel1kp/) or [Twitter/X](https://x.com/daniel1kp)
+
