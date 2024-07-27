@@ -1,37 +1,24 @@
-// src/app/api/send/route.js
+import { EmailTemplate } from 'src/app/components/email-template';
+import { Resend } from 'resend';
+import * as React from 'react';
 
-import { NextResponse } from "next/server";
-import { Resend } from "resend";
+const resend = new Resend('re_5y6S7Bke_EgFWENSPSj7LxTcGapVDorCB');
 
-// Ensure environment variables are loaded
-if (!process.env.RESEND_API_KEY || !process.env.FROM_EMAIL) {
-  throw new Error("Missing environment variables RESEND_API_KEY or FROM_EMAIL");
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.FROM_EMAIL;
-
-export async function POST(req) {
+export async function POST() {
   try {
-    const { email, subject, message } = await req.json();
-    console.log(email, subject, message);
-
-    const data = await resend.emails.send({
-      from: fromEmail,
-      to: [fromEmail, email],
-      subject: subject,
-      react: (
-        <>
-          <h1>{subject}</h1>
-          <p>Thank you for contacting us!</p>
-          <p>New message submitted:</p>
-          <p>{message}</p>
-        </>
-      ),
+    const { data, error } = await resend.emails.send({
+      from: 'Daniel <no-reply@daniel04kp.com>',
+      to: ['daniel04kp@gmail.com'],
+      subject: 'Hello world',
+      react: EmailTemplate({ firstName: 'John' }),
     });
-    return NextResponse.json(data);
+
+    if (error) {
+      return Response.json({ error }, { status: 500 });
+    }
+
+    return Response.json(data);
   } catch (error) {
-    console.error("Error sending email:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return Response.json({ error }, { status: 500 });
   }
 }
